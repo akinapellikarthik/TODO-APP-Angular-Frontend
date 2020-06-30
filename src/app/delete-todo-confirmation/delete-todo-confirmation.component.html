@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Delete Confirmation</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        Are You Sure you want to delete
+    </mat-card-content>
+    <mat-card-actions align="start">
+        <button mat-button id="btnno" name="btnno" matDialogClose>No</button>
+        <button mat-button id="btnyes" name="btnyes" (click)='deleteTodo(data.todo_id)' matDialogClose>Yes</button>
+    </mat-card-actions>
+</mat-card>
