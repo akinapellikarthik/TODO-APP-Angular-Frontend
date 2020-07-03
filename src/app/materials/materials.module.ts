@@ -11,6 +11,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 const materials = [
@@ -25,7 +28,9 @@ const materials = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatSlideToggleModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatSortModule,
+  MatPaginatorModule
 ];
 
 
