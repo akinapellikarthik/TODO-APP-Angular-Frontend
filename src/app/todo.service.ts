@@ -34,4 +34,8 @@ export class TodoService {
   updateTodo(todo: Todo): Observable<Number>{
     return this.http.put<Number>(this.todoBackendBaseUrl+'/todo',todo);
   }
+
+  todoNotCompletedCount(): Observable<Number>{
+    return this.http.get<Number>(this.todoBackendBaseUrl+'/todoNotCompletedCount');
+  }
 }

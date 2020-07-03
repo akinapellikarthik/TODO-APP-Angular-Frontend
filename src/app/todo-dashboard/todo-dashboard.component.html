@@ -9,6 +9,12 @@
             Home
         </ng-template>
         <strong>TODO Application eases us to manage your TODO's</strong>
+        <br><br>
+        <p>
+            hi {{userName}}</p>
+        <p>
+            <span [matBadge]="badgeCount" matBadgeOverlap="false" id="todoBadge1">Todays Todo Task to start count is</span>
+        </p>
     </mat-tab>
 
     <mat-tab label="todo-create-label">

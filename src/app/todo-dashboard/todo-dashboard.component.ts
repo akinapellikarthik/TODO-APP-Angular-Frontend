@@ -9,7 +9,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TODOSaveSuccessComponent } from '../todo-save-success/todo-save-success.component';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DeleteTodoConfirmationComponent } from '../delete-todo-confirmation/delete-todo-confirmation.component';
 import { EdittodoComponent } from '../edittodo/edittodo.component';
 
@@ -20,8 +20,9 @@ import { EdittodoComponent } from '../edittodo/edittodo.component';
 })
 export class TodoDashboardComponent implements OnInit {
 
+  userName: string;
+  badgeCount: Number;
   todoList: Todo[] = [{
-    //todoDescription: null, isDone: null, todo_date: null
     todoDescription: null, isDone: null, todo_date: null
   }];
   todoCols: string[] = ['ID', 'todoDescription', 'isDone', 'todo_date'];
@@ -37,15 +38,24 @@ export class TodoDashboardComponent implements OnInit {
     private todoService: TodoService,
     private _snackBar: MatSnackBar,
     private _matDialog: MatDialog,
-    private _router: Router
+    private _router: Router,
+    private _activatedRouter: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.userName = this._activatedRouter.snapshot.paramMap.get('uname');
+    //console.log("this.username is:" + this.userName);
+    this.todoService.todoNotCompletedCount().subscribe(
+      data => { this.badgeCount = data },
+      err => console.log(err)
+
+    );
+    //this.badgeCount = 10;
     this.dataSource = new UserDataSource(this.todoService);
     this.todoService.todoList().subscribe(
       data => {
-        console.log("data loaded");
-        console.table(data);
+        // console.log("data loaded");
+        // console.table(data);
         this.todoList = data;
         this.dataSource = new MatTableDataSource(this.todoList);
       }
@@ -67,7 +77,7 @@ export class TodoDashboardComponent implements OnInit {
       data => {
         this.todoList = data;
         //this.dataSource = new MatTableDataSource(this.todoList);
-        console.table(this.todoList);
+        //console.table(this.todoList);
       },
       err => {
         console.log(err);

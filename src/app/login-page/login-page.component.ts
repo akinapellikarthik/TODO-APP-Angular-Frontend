@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit {
       data => {
         console.log("data is:" + data);
         this._matDialog.open(LoginSuccessComponent, { data: { username: this.todoUser.username } });
-        this._router.navigate(['todo-dashboard']);
+        this._router.navigate(['todo-dashboard', { uname: this.todoUser.username }]);
       },
       err => {
         console.log("error is:" + err);
